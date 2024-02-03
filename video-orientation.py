@@ -124,7 +124,10 @@ def display_video_overlay(base_image_path, video_path):
         )
 
         # Display the matched keypoints
-        cv2.imshow("Matched Keypoints", matched_image)
+        cv2.imshow("Large Frame vs. Orientation Detection", matched_image)
+
+        # save the cv2 image
+        # cv2.imwrite(os.path.join(media_folder, f"out{frame_count}.jpg"), matched_image)
 
         # Read the next frame of the video
         ret, video_frame = video.read()
