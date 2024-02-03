@@ -16,7 +16,7 @@ def detect_and_describe(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Initialize the feature detector (SIFT or ORB)
-    detector = cv2.SIFT_create()
+    detector = cv2.SIFT_create(contrastThreshold=0.07, edgeThreshold=8)
     # detector = cv2.ORB_create()
 
     # Detect keypoints and compute descriptors
@@ -94,6 +94,6 @@ def display_matched_keypoints(large_image_path, small_image_path):
 
 
 if __name__ == "__main__":
-    large = os.path.join(media_folder, "large.png")
-    small = os.path.join(media_folder, "small_rotated.jpg")
+    large = os.path.join(media_folder, "cmu-crop1.png")
+    small = os.path.join(media_folder, "ha.png")
     display_matched_keypoints(large, small)
