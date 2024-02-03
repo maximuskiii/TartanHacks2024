@@ -1,20 +1,14 @@
-# TartanHacks2024
+# 
 
 ```mermaid
 graph TD;
-    A[Start] --> B[Setup Local Development Environment];
-    B --> C[Obtain Google Maps API Key];
-    B --> D[Setup Web Server];
-    C --> E[Develop Front End];
-    D --> E;
-    E -->|HTML, CSS, JavaScript| F[Integrate Google Maps API];
-    E -->|AJAX/Fetch API| G[Develop Back End];
-    G -->|Flask/Django| H[Run Python Scripts for Data/Image Processing];
-    H --> I[Implement Data Exchange];
-    F --> J[Embed Video Playback with HTML5 <video> Tag];
-    I --> K[Testing];
-    J --> K;
-    K --> L{Deployment};
-    L --> M[Local Hosting];
-    L --> N[Cloud Service];
+    A[App] -->|lat/long| B[Imaging/Contour Detection Module];
+    B -->|lat/long| C[Google Maps API];
+    C -->|imagery| B
+    B -->|path contours| D[Flightpath Planning Module]
+    B -->|path contours, statellite imagery| E[Orientation and Surface Pathfinding Module]
+    D -->|flightpath| F[Drone]
+    F -->|video| G[Crowd Detection Module]
+    G -->|images, crowd map| E
+    E -->|optimal ground path, drone localization visualization| A
 ```
