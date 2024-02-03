@@ -1,6 +1,5 @@
 # SkyShepherd
 ![logo](logo.webp)
-lorem ipsum dolor sit amet
 
 ```mermaid
 %%{
