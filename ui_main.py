@@ -10,9 +10,12 @@ from PIL import Image
 from io import BytesIO
 from trajectory_planning import *
 import subprocess
+import os
 
 api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"
 gmaps = googlemaps.Client(api_key)
+directory = os.path.dirname(os.path.realpath(__file__))
+image_path = os.path.join(directory, "graph.png")
 
 
 # Load the .ui files directly
@@ -31,6 +34,8 @@ class ImageDisplay(NavigationDisplayBase, NavigationDisplayUi):
         # Create a QLabel to display the image
         self.image_label = QLabel(self.matplotlibWidget)
         self.image_label.setGeometry(self.matplotlibWidget.geometry())
+
+        print("location: ", image_path)
 
         # Load and display the image
         self.display_image(image_path)
@@ -119,9 +124,8 @@ class MainPage(MainPageBase, MainPageUi):
         from trajectory_planning import calculate_trajectory_and_save
 
         calculate_trajectory_and_save(self.array)
-        self.imageDisplay = ImageDisplay(
-            image_path="/Users/juliusarolovitch/TartanHacks2024/graph.png", parent=self
-        )
+        only_image = os.path.basename(image_path)
+        self.imageDisplay = ImageDisplay(image_path=only_image, parent=self)
         self.imageDisplay.show()  # Show the ImageDisplay UI
         print("we have passed showing")
         # self.close()  # Close the MainPage UI

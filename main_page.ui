@@ -55,13 +55,14 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(255, 255, 255);
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: white;
 border-radius: 5px;
 border: 1px solid black;</string>
     </property>
-    <property name="plainText">
+    <!-- <property name="plainText">
      <string>Insert address here...</string>
-    </property>
+    </property> -->
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
@@ -73,7 +74,8 @@ border: 1px solid black;</string>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgba(255, 255, 255, 0)</string>
+     <string notr="true">color: rgba(0,0,0 255);
+     </string>
     </property>
     <property name="text">
      <string>Type in location address here:</string>
