@@ -9,13 +9,10 @@ from PIL import Image
 import random
 from io import BytesIO
 
-
-api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo" 
 latitude = 40.443518 
 longitude = -79.942947  
 zoom = 16 
 size = "800x400"  
-save_path = "/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg" 
 
 #get_map.save_custom_map_image(api_key, latitude, longitude, zoom, size, "roadmap", save_path)
 #make_graph.id_paths('Maps+Paths/test.jpg', 'arr.npy', 50)
@@ -26,7 +23,7 @@ save_path = "/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg"
 
 
 
-def getMapImg(api_key, latitude, longitude, zoom, size="600x300", maptype="roadmap", save_path="path/to/your/folder/map_image.jpg"):
+def getMapImg(api_key, latitude, longitude, zoom, size="600x300", maptype="roadmap", save_path="YOUR_FILE_PATH"):
 
     location = f"{latitude},{longitude}"
     style = "feature:all|element:labels|visibility:off"
@@ -39,7 +36,7 @@ def getMapImg(api_key, latitude, longitude, zoom, size="600x300", maptype="roadm
         #    file.write(response.content)
         #print(f"Map image saved to {save_path}")
     else:
-        print("Error fetching the map image")\
+        print("Error fetching the map image")
     
     return res
 
@@ -142,7 +139,7 @@ def generate_heatmap_frames(img, n_frames=10):
     
     return frame_filenames
 
-def create_animation(frame_filenames, output_filename='heatmap_animation.gif'):
+def create_animation(frame_filenames, output_filename):
     with imageio.get_writer(output_filename, mode='I') as writer:
         for filename in frame_filenames:
             image = imageio.imread(filename)
@@ -156,7 +153,7 @@ img = create_randomized_heatmap(height, width)
 
 frame_filenames = generate_heatmap_frames(img, n_frames=20)
 
-create_animation(frame_filenames, 'heatmap_animation.gif')
+create_animation(frame_filenames, 'FILE_PATH')
 
 
 

@@ -41,4 +41,4 @@ def id_paths(image_path, npy_array_path, bar_height):
 
     cv2.destroyAllWindows()
 
-id_paths('/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg', '/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/arr.npy', 0)
+id_paths("FILE_PATHS", 0)

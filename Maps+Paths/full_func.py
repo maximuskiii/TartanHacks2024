@@ -6,9 +6,8 @@ import requests
 from PIL import Image
 from io import BytesIO
 import io
-
-api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"
-gmaps =  googlemaps.Client("AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo")
+import random
+gmaps =  googlemaps.Client("YOUR_API_KEY")
 
 #########################################
 #####For Julius' drone path planning#####
@@ -67,7 +66,7 @@ def process_map_image(api_key, address, zoom, bar_height, size="600x300", maptyp
 #####################################
 
 
-def getSatImg(address, zoom, api_key=api_key, size="1200x600", maptype="satellite", save_path="/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg"):
+def getSatImg(address, zoom, api_key, size="1200x600", maptype="satellite", save_path="YOUR_FILE_PATH"):
     geocoding = addr_to_coord(address)
     location = f"{geocoding[0]},{geocoding[1]}"
     style = "feature:all|element:labels|visibility:off"
@@ -83,7 +82,7 @@ def getSatImg(address, zoom, api_key=api_key, size="1200x600", maptype="satellit
         
 #getSatImg("Carnegie Mellon University", 17)
 
-def getSatImgAsArray(address, zoom, api_key=api_key, size="1200x600", maptype="satellite"):
+def getSatImgAsArray(address, zoom, api_key, size="1200x600", maptype="satellite"):
     geocoding = addr_to_coord(address) 
     location = f"{geocoding[0]},{geocoding[1]}"
     style = "feature:all|element:labels|visibility:off"
@@ -107,7 +106,7 @@ def getSatImgAsArray(address, zoom, api_key=api_key, size="1200x600", maptype="s
 ### For Alon and Ben - 1/0's path representation ###
 ####################################################       
 
-def map_to_bin_graph(address, zoom, bar_height=0, api_key=api_key,  size="600x300", maptype="roadmap"):
+def map_to_bin_graph(address, zoom, api_key, bar_height=0,  size="600x300", maptype="roadmap"):
 
     geocoding = addr_to_coord(address)
     location = f"{geocoding[0]},{geocoding[1]}"
