@@ -1,0 +1,4 @@
+*.txt
+*.png
+coverage_planning
+*.venv
