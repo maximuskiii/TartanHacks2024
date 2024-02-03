@@ -1,5 +1,3 @@
-import make_graph
-import get_map
 import requests
 import googlemaps
 import numpy as np
@@ -8,53 +6,16 @@ import requests
 from PIL import Image
 from io import BytesIO
 
+api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"
+gmaps =  googlemaps.Client("AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo")
 
-api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"  # Replace with your actual API key
-latitude = 40.443518  # Example: Latitude for Paris, France 40.443518, -79.942947
-longitude = -79.942947  # Example: Longitude for Paris, France
-zoom = 16  # Example zoom level
-size = "800x400"  # Example size, width x height in pixels
-save_path = "/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg"  # Specify your desired save path
-
-#get_map.save_custom_map_image(api_key, latitude, longitude, zoom, size, "roadmap", save_path)
-#make_graph.id_paths('Maps+Paths/test.jpg', 'arr.npy', 50)
-
-#def cumulative_test(address): 
-#geocoding = get_map.addr_to_coord(address)
-    
-
-
-
-def getMapImg(api_key, latitude, longitude, zoom, size="600x300", maptype="roadmap", save_path="path/to/your/folder/map_image.jpg"):
-    """
-    Fetches a Google Maps static image with specified parameters and saves it to a file.
-
-    Parameters:
-    - api_key: Your Google Maps API key as a string.
-    - latitude: Latitude for the center of the map as a float.
-    - longitude: Longitude for the center of the map as a float.
-    - zoom: The zoom level of the map as an integer.
-    - size: The size of the map image in pixels (widthxheight) as a string. Example: "600x300".
-    - maptype: The type of map to display (e.g., "roadmap", "satellite").
-    - save_path: Full path where the image will be saved, including the file name and extension.
-    """
-    location = f"{latitude},{longitude}"
-    style = "feature:all|element:labels|visibility:off"
-    map_url = f"https://maps.googleapis.com/maps/api/staticmap?center={location}&zoom={zoom}&size={size}&maptype={maptype}&style={style}&key={api_key}"
-
-    response = requests.get(map_url)
-    if response.status_code == 200:
-        res = response.content
-        # Save the image to a file
-        #with open(save_path, 'wb') as file:
-        #    file.write(response.content)
-        #print(f"Map image saved to {save_path}")
-    else:
-        print("Error fetching the map image")\
-    
-    return res
-
-
+def addr_to_coord(addr): 
+    geocoding = gmaps.geocode(addr)
+    if geocoding:
+        lat = geocoding[0]['geometry']['location']['lat']
+        lng = geocoding[0]['geometry']['location']['lng']
+        print(lat, lng)
+    return (lat, lng)
 
 def process_map_image(api_key, address, zoom, bar_height, size="600x300", maptype="roadmap"):
     """
@@ -70,7 +31,9 @@ def process_map_image(api_key, address, zoom, bar_height, size="600x300", maptyp
     - bar_height: Height of the bar to crop from the bottom of the image.
     """
 
-    geocoding = get_map.addr_to_coord(address)
+
+
+    geocoding = addr_to_coord(address)
     location = f"{geocoding[0]},{geocoding[1]}"
     style = "feature:all|element:labels|visibility:off"
     map_url = f"https://maps.googleapis.com/maps/api/staticmap?center={location}&zoom={zoom}&size={size}&maptype={maptype}&style={style}&key={api_key}"
@@ -111,6 +74,4 @@ def process_map_image(api_key, address, zoom, bar_height, size="600x300", maptyp
     # Optionally, save the processed image as a numpy array
     # np.save(npy_array_path, cropped_black_img)  # You need to define npy_array_path
 
-process_map_image(api_key, "5000 Forbes Ave, Pittsburgh, PA 15213", 13, 30, "600x300", "roadmap")
-
-
+process_map_image(api_key, "5000 Forbes Ave, Pittsburgh, PA 15213", 16, 30, "600x300", "roadmap")
