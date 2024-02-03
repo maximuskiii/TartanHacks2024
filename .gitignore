@@ -2,3 +2,6 @@
 *.png
 coverage_planning
 *.venv
+SSD_*
+.idea
+.DS*
