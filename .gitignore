@@ -5,3 +5,4 @@ coverage_planning
 SSD_*
 .idea
 .DS*
+*.txt
