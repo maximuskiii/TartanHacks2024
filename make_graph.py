@@ -2,13 +2,13 @@ import cv2
 import numpy as np
 
 
-def identify_paths(image_path):
+def id_paths(image_path, npy_array_path, bar_height):
     # Load the image
     img = cv2.imread(image_path)
     if img is None:
         print("Error: Image could not be read.")
         return
-
+    
     # Convert to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
@@ -24,10 +24,14 @@ def identify_paths(image_path):
     black_img = np.zeros_like(img)
     # Draw contours on the original image
     cv2.drawContours(black_img, contours, -1, (255, 255, 255), 2)
+    
+    #Cropping
+    height, width = black_img.shape[:2]
+    new_height = height - bar_height
+    cropped_black_img = black_img[0:new_height, 0:width]
 
     # Show the image with paths highlighted
-    cv2.imshow('Paths Identified', black_img)
-    
+    cv2.imshow('Paths Identified', cropped_black_img)
     
     while True:
         # If the ESC key is pressed, break the loop
@@ -36,38 +40,13 @@ def identify_paths(image_path):
             
     cv2.waitKey(0)
 
-    cv2.imwrite('test.jpg', black_img)
+    cv2.imwrite(image_path, cropped_black_img)
+
+    # Save the cropped image to a file
+    np.save(npy_array_path, cropped_black_img)
+    print(f"Image saved to {image_path}")
+
     cv2.destroyAllWindows()
 
 # Replace 'path_to_your_image.jpg' with the path to the image you want to process
-identify_paths('test.jpg')
-
-
-def crop_and_save_image(image_path, bar_height, output_path):
-    # Load the image
-    img = cv2.imread(image_path)
-    if img is None:
-        print("Error: Image could not be read.")
-        return
-    
-    # Get the height and width of the image
-    height, width = img.shape[:2]
-    
-    # Calculate the new height by subtracting the bar height
-    new_height = height - bar_height
-    
-    # Crop the image to remove the bar from the bottom
-    # Note: img[y1:y2, x1:x2] where (x1,y1) is the top-left coordinate
-    # and (x2,y2) is the bottom-right coordinate of the cropped area
-    cropped_img = img[0:new_height, 0:width]
-    
-    # Save the cropped image to a file
-    cv2.imwrite(output_path, cropped_img)
-    np.save('arr.npy', cropped_img)
-    print(f"Image saved to {output_path}")
-
-# Replace 'path_to_your_image.jpg' with the path to the image you want to process
-# Set 'bar_height' to the height of the bar you want to remove from the bottom
-# Replace 'output_path.jpg' with the path where you want to save the cropped image
-crop_and_save_image('test.jpg', 50, 'test.jpg')
-
+id_paths('test.jpg', 'arr.npy', 50)
