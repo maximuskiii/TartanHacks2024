@@ -8,8 +8,8 @@
             'primaryColor': '#9b072f',
             'primaryTextColor': '#fff',
             'primaryBorderColor': '#7C0000',
-            'lineColor': '#F8B229',
-            'secondaryColor': '#ddd3c7',
+            'lineColor': '#ddd3c7',
+            'secondaryColor': '#dfd3c5',
             'tertiaryColor': '#fff'
         }
     }
