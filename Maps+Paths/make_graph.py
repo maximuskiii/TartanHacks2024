@@ -3,16 +3,21 @@ import numpy as np
 
 
 def id_paths(image_path, npy_array_path, bar_height):
+    # Load the image
     img = cv2.imread(image_path)
     if img is None:
-        print("Error: img can't be read")
+        print("Error: Image could not be read.")
         return
     
+    # Convert to grayscale
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
+    # Apply Gaussian blur
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 
+    # Edge detection
     edges = cv2.Canny(blurred, 50, 150)
+
 
     contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 

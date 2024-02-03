@@ -25,6 +25,7 @@ def addr_to_coord(addr):
 
 def process_map_image(api_key, address, zoom, bar_height, size="600x300", maptype="roadmap"):
 
+
     geocoding = addr_to_coord(address)
     location = f"{geocoding[0]},{geocoding[1]}"
     style = "feature:all|element:labels|visibility:off"
