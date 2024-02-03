@@ -38,6 +38,28 @@ def match_features(descriptors1, descriptors2):
     return matches
 
 
+def overlay_images(large_image, small_image, matches, keypoints1, keypoints2):
+    # Get the bounding box of the matched region
+    large_pts = np.float32(
+        [keypoints1[match.queryIdx].pt for match in matches]
+    ).reshape(-1, 1, 2)
+    small_pts = np.float32(
+        [keypoints2[match.trainIdx].pt for match in matches]
+    ).reshape(-1, 1, 2)
+    M, _ = cv2.findHomography(small_pts, large_pts, cv2.RANSAC, 5.0)
+    h, w = small_image.shape[:2]
+    pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+    dst = cv2.perspectiveTransform(pts, M)
+    cv2.polylines(large_image, [np.int32(dst)], True, (50, 50, 250), 3, cv2.LINE_AA)
+
+    # displacement information
+    displacement = (M[0, 2], M[1, 2])
+    scale = np.sqrt(M[0, 0] ** 2 + M[1, 0] ** 2)
+    rotation = np.degrees(np.arctan2(M[1, 0], M[0, 0]))
+
+    return displacement, scale, rotation
+
+
 def display_matched_keypoints(large_image_path, small_image_path):
     # Load the large aerial shot and the smaller aerial shot
     large_image = cv2.imread(large_image_path)
@@ -50,6 +72,10 @@ def display_matched_keypoints(large_image_path, small_image_path):
     # Match features between the images
     matches = match_features(descriptors1, descriptors2)
 
+    disp, scale, rot = overlay_images(
+        large_image, small_image, matches, keypoints1, keypoints2
+    )
+
     # Draw matched keypoints
     matched_image = cv2.drawMatches(
         large_image, keypoints1, small_image, keypoints2, matches[:10], None
@@ -58,6 +84,11 @@ def display_matched_keypoints(large_image_path, small_image_path):
     # Display the matched keypoints
     cv2.imshow("Matched Keypoints", matched_image)
     cv2.waitKey(0)
+
+    # print the displacement, scale, and rotation
+    print("Displacement: ", disp)
+    print("Scale: ", scale)
+    print("Rotation: ", rot)
     cv2.destroyAllWindows()
 
 
