@@ -1,4 +1,4 @@
-1. take in cropped statelite image
+1. take in cropped satellite image
 2. take in cropped path segment
 3. take in image (from video/drone)
 4. derive transformation matrix via opencv (other branch)
