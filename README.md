@@ -9,8 +9,14 @@ flowchart TB
     B -->|Path contours| D[Flight Path Planning Module]
     B -->|Path contours, statellite imagery| E[Orientation and Surface Pathfinding Module]
     end
+    subgraph Julius
     D -->|Flight path| F[Drone]
     F -->|Video| G[Crowd Detection Module]
+    end
+    subgraph Ben
     G -->|Images, crowd map| E
+    end
+    subgraph Alon
     E -->|Optimal ground path, drone localization visualization| A
+    end
 ```
