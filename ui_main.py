@@ -16,9 +16,10 @@ gmaps = googlemaps.Client(api_key)
 
 
 # Load the .ui files directly
-MainPageUi, MainPageBase = uic.loadUiType('main_page.ui')
+MainPageUi, MainPageBase = uic.loadUiType("main_page.ui")
 NavigationDisplayUi, NavigationDisplayBase = uic.loadUiType(
-    'navigation_display_page.ui')
+    "navigation_display_page.ui"
+)
 
 
 class ImageDisplay(NavigationDisplayBase, NavigationDisplayUi):
@@ -56,12 +57,20 @@ class MainPage(MainPageBase, MainPageUi):
     def addr_to_coord(self, addr):
         self.geocoding = gmaps.geocode(addr)
         if self.geocoding:
-            lat = self.geocoding[0]['geometry']['location']['lat']
-            lng = self.geocoding[0]['geometry']['location']['lng']
+            lat = self.geocoding[0]["geometry"]["location"]["lat"]
+            lng = self.geocoding[0]["geometry"]["location"]["lng"]
             print(lat, lng)
         return (lat, lng)
 
-    def process_map_image(self, address, api_key=api_key, zoom=16, bar_height=30, size="600x300", maptype="roadmap"):
+    def process_map_image(
+        self,
+        address,
+        api_key=api_key,
+        zoom=16,
+        bar_height=30,
+        size="600x300",
+        maptype="roadmap",
+    ):
         geocoding = self.addr_to_coord(address)
         location = f"{geocoding[0]},{geocoding[1]}"
         style = "feature:all|element:labels|visibility:off"
@@ -83,7 +92,8 @@ class MainPage(MainPageBase, MainPageUi):
         blurred = cv2.GaussianBlur(gray, (5, 5), 0)
         edges = cv2.Canny(blurred, 50, 150)
         contours, _ = cv2.findContours(
-            edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE
+        )
 
         black_img = np.zeros_like(img)
         cv2.drawContours(black_img, contours, -1, (255, 255, 255), 4)
@@ -105,9 +115,13 @@ class MainPage(MainPageBase, MainPageUi):
         self.array = self.process_map_image(self.userText)
         # Assuming you save the graph as an image in a known location
         # Modify this function to save the graph image
-        self.save_graph_image('graph.png')
+        # self.save_graph_image('graph.png')
+        from trajectory_planning import calculate_trajectory_and_save
+
+        calculate_trajectory_and_save(self.array)
         self.imageDisplay = ImageDisplay(
-            image_path='/Users/juliusarolovitch/TartanHacks2024/graph.png', parent=self)
+            image_path="/Users/juliusarolovitch/TartanHacks2024/graph.png", parent=self
+        )
         self.imageDisplay.show()  # Show the ImageDisplay UI
         print("we have passed showing")
         # self.close()  # Close the MainPage UI
