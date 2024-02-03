@@ -1,6 +1,6 @@
 import requests
 
-def save_custom_map_image(api_key, latitude, longitude, zoom, size="600x300", maptype="roadmap", save_path="path/to/your/folder/map_image.jpg"):
+def save_custom_map_image(api_key, latitude, longitude, zoom, size="600x300", maptype="satellite", save_path="path/to/your/folder/map_image.jpg"):
     """
     Fetches a Google Maps static image with specified parameters and saves it to a file.
 
@@ -15,7 +15,7 @@ def save_custom_map_image(api_key, latitude, longitude, zoom, size="600x300", ma
     """
     location = f"{latitude},{longitude}"
     style = "feature:all|element:labels|visibility:off"
-    map_url = f"https://maps.googleapis.com/maps/api/staticmap?center={location}&zoom={zoom}&size={size}&maptype={maptype}&style={style}&key={api_key}"
+    map_url = f"https://maps.googleapis.com/maps/api/staticmap?center={location}&zoom={zoom}&size={size}&maptype=satellite&style={style}&key={api_key}"
 
     response = requests.get(map_url)
     if response.status_code == 200:
@@ -28,9 +28,9 @@ def save_custom_map_image(api_key, latitude, longitude, zoom, size="600x300", ma
 
 # Example usage
 api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"  # Replace with your actual API key
-latitude = 40.443518  # Example: Latitude for Paris, France 40.443518, -79.942947
-longitude = -79.942947  # Example: Longitude for Paris, France
-zoom = 16  # Example zoom level
+latitude = 25.195643528 # Example: Latitude for Paris, France 40.443518, -79.942947
+longitude = 55.2740407820  # Example: Longitude for Paris, France
+zoom = 15 # Example zoom level
 size = "800x400"  # Example size, width x height in pixels
 save_path = "/Users/myagnyatinskiy/Desktop/TartanHacks2024/test.jpg"  # Specify your desired save path
 
