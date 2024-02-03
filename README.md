@@ -11,7 +11,7 @@
         'lineColor': '#F8B229',
         'secondaryColor': '#006100',
         'tertiaryColor': '#fff',
-        'fontFamily': 'arial'
+        'fontFamily': 'verdana'
         }
     }
 }%%
