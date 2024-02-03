@@ -6,3 +6,8 @@ SSD_*
 .idea
 .DS*
 *.txt
+media/*.mp4
+media/*.png
+media/*.jpg
+*.txt
+coverage_planning
