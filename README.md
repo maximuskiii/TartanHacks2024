@@ -1,7 +1,7 @@
 # 
 
 ```mermaid
-%%{init: {'theme':'forest'}}%%
+%%{init: {'theme':'neutral'}}%%
 flowchart TB
     A[App] -->|Coordinates| B[Imaging/Contour Detection Module];
     B -->|Coordinates| C[Google Maps API];
