@@ -8,14 +8,11 @@ def id_paths(image_path, npy_array_path, bar_height):
     if img is None:
         print("Error: Image could not be read.")
         return
-    
-    # Convert to grayscale
+
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    # Apply Gaussian blur
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
 
-    # Edge detection
     edges = cv2.Canny(blurred, 50, 150)
 
 
