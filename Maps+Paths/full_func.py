@@ -210,5 +210,3 @@ def map_to_bin_graph(address, zoom, bar_height=0, api_key=api_key,  size="600x30
     return bin_arr_img
 
 map_to_bin_graph("Carnegie Mellon University", 17)
-
-
