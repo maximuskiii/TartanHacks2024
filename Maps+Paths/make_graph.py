@@ -23,7 +23,7 @@ def id_paths(image_path, npy_array_path, bar_height):
 
     black_img = np.zeros_like(img)
     # Draw contours on the original image
-    cv2.drawContours(black_img, contours, -1, (255, 255, 255), 0)
+    cv2.drawContours(black_img, contours, -1, (255, 255, 255), 4)
 
     
     #Cropping
@@ -50,4 +50,4 @@ def id_paths(image_path, npy_array_path, bar_height):
     cv2.destroyAllWindows()
 
 # Replace 'path_to_your_image.jpg' with the path to the image you want to process
-id_paths('Maps+Paths/test.jpg', 'arr.npy', 50)
+id_paths('/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg', '/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/arr.npy', 0)

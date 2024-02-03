@@ -30,7 +30,7 @@ def save_custom_map_image(api_key, latitude, longitude, zoom, size="600x300", ma
 api_key = "AIzaSyAWg_bkETJdwPx8X6ENtJRp3okVKm1Oyeo"  # Replace with your actual API key
 latitude = 40.443391 # Example: Latitude for Paris, France 40.443518, -79.942947
 longitude = -79.942994  # Example: Longitude for Paris, France
-zoom = 15 # Example zoom level
+zoom = 16 # Example zoom level
 size = "800x400"  # Example size, width x height in pixels
 save_path = "/Users/myagnyatinskiy/Desktop/TartanHacks2024/Maps+Paths/test.jpg"  # Specify your desired save path
 
