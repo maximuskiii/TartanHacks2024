@@ -6,7 +6,7 @@
         'theme': 'base',
         'themeVariables': {
             'primaryColor': '#9b072f',
-            'primaryTextColor': '#fff',
+            'primaryTextColor': '#000',
             'primaryBorderColor': '#7C0000',
             'lineColor': '#eda828',
             'secondaryColor': '#dfd3c5',
