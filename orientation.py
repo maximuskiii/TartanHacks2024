@@ -38,6 +38,7 @@ def match_features(descriptors1, descriptors2):
     return matches
 
 
+# WORKS but has a lot of noise
 def overlay_images(large_image, small_image, matches, keypoints1, keypoints2):
     # Get the bounding box of the matched region
     large_pts = np.float32(
