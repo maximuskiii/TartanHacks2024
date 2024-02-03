@@ -6,12 +6,12 @@
         'theme': 'base',
         'themeVariables': {
             'primaryColor': '#9b072f',
-            'primaryTextColor': '#000',
+            'primaryTextColor': '#dfd3c5',
             'primaryBorderColor': '#7C0000',
             'lineColor': '#eda828',
-            'secondaryColor': '#dfd3c5',
-            'secondaryTextColor': '#00000',
-            'tertiaryColor': '#000000'
+            'secondaryColor': '#000',
+            'secondaryBorderColor': '#000',
+            'tertiaryColor': '#000'
         }
     }
 }%%
