@@ -28,3 +28,4 @@ flowchart TB
     G ==>|Images, crowd map| E
     E ==>|Optimal ground path, drone localization visualization| A
 ```
+![gifdemo](demo.gif)
